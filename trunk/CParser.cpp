@@ -41,10 +41,12 @@ bool NassiEditorPanel::ParseC(const wxString &str)
     rule_t cstr           = confix_p(_T('"'), *c_escape_ch_p, _T('"')); // string
     rule_t comment        = c_comment | cpp_comment;
     rule_t comment_collected = comment[comment_collector(comment_str)];
-    rule_t parentheses    = (
+    rule_t parentheseshelper  = (
                 confix_p(ch_p(_T('(')),
-                *(comment_collected | cstr | parentheses | anychar_p),
-                ch_p(_T(')')))  )[instr_collector(source_str)];
+                *(comment_collected | cstr | parentheseshelper | anychar_p),
+                ch_p(_T(')')))  );
+    rule_t parentheses    = parentheseshelper[instr_collector(source_str)];
+
     rule_t keywordend = (eps_p - (alnum_p | _T('_')));
 
 
@@ -116,15 +118,17 @@ bool NassiEditorPanel::ParseC(const wxString &str)
 
 
     other_instr    = ( preprocessor |
-                        (*(anychar_p -
+                       (*
+                          (cstr|( anychar_p -
                             (
                                 comment              |
                                 ch_p(_T(';'))        |
                                 ch_p(_T('{'))        |
+                                ch_p(_T('}'))        |
                                 special_w
                             )
-                          ) >>
-                          ch_p(_T(';')) )
+                          ))
+                          >> ch_p(_T(';')) )
                       )[instr_collector(source_str)];
 
 
