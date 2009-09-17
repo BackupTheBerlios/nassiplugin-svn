@@ -130,3 +130,11 @@ void cbEditorPanel::UpdateModified()
     else
         SetTitle( GetShortName() );
 }
+
+void cbEditorPanel::SetFilename(const wxString& filename)
+{
+    m_Filename = filename;
+    wxFileName fname;
+    fname.Assign(m_Filename);
+    m_Shortname = fname.GetFullName();
+}

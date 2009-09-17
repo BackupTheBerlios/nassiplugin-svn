@@ -68,6 +68,10 @@ class cbEditorPanel: public EditorBase
         //virtual bool CanCut() const{return false;}
         //virtual bool CanCopy() const{return false;}
 
+        /** @brief Sets the editor's filename.
+          * @param filename The filename to set.
+          */
+        virtual void SetFilename(const wxString& filename);
 
     private:
         virtual bool CanUndo() const;

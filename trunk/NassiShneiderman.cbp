@@ -52,6 +52,9 @@
 				</ExtraCommands>
 			</Target>
 		</Build>
+		<VirtualTargets>
+			<Add alias="all" targets="default;" />
+		</VirtualTargets>
 		<Compiler>
 			<Add option="-g" />
 		</Compiler>
