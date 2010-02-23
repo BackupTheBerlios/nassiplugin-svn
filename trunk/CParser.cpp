@@ -1,28 +1,19 @@
 
 #include "NassiEditorPanel.h"
-//#include "parseactions.h"
 
-//parser-generator framework
-#include <boost/spirit.hpp>
-#include <boost/spirit/core.hpp>
-#include <boost/spirit/symbols/symbols.hpp>
-//#include <boost/spirit/utility/chset.hpp>
-//#include <boost/spirit/utility/escape_char.hpp>
-#include <boost/spirit/utility/confix.hpp>
-//#include <boost/spirit/iterator/file_iterator.hpp>
+//parser-generator framework:
+#include <boost/spirit/include/classic.hpp>
+#include <boost/spirit/include/classic_core.hpp>
+#include <boost/spirit/include/classic_symbols.hpp>
+#include <boost/spirit/include/classic_confix.hpp>
 
-//#include <boost/config/warning_disable.hpp>
-//#include <boost/spirit/include/qi.hpp>
-
-using namespace boost::spirit;
+using namespace boost::spirit::classic;
 
 
 #include "parseactions.h"
 #include "bricks.h"
 #include "commands.h"
 class NassiBrick;
-using namespace boost::spirit;
-
 
 
 bool NassiEditorPanel::ParseC(const wxString &str)
